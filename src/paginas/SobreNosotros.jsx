@@ -1,6 +1,14 @@
- 
+import { useContext, useEffect } from 'react';
+import AuthContext from './../context/AuthProvider'; 
 
 const SobreNosotros = () => {
+    const { handleMantenLaSesion } = useContext(AuthContext);
+    useEffect(() => {
+    
+        return () => {
+          handleMantenLaSesion();
+        };
+      }, []);
   return (
     <>
         <div className="breadcumb-area bg-img bg-overlay" style={{backgroundImage:"url(img/bg-img/breadcumb1.jpg)"}}>

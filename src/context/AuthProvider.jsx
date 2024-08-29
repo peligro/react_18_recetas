@@ -18,6 +18,16 @@ let AuthProvider = ({ children }) => {
         setAuthNombre(localStorage.getItem('recetas_flaites_nombre'));
         setAuthToken(localStorage.getItem('recetas_flaites_token'));
     }
+    const handleMantenLaSesion = () => {
+
+        if (auth && localStorage.getItem('recetas_flaites_id') != null) {
+            setAuth(true);
+            setAuthId(localStorage.getItem('recetas_flaites_id'));
+            setAuthNombre(localStorage.getItem('recetas_flaites_nombre'));
+            setAuthToken(localStorage.getItem('recetas_flaites_token'));
+        }
+    
+    }
     const handleIniciarSesion = (id, nombre, token) => {
         localStorage.setItem('recetas_flaites_id', id);
         localStorage.setItem('recetas_flaites_nombre', nombre);
@@ -35,7 +45,7 @@ let AuthProvider = ({ children }) => {
     }
     return (
         <AuthContext.Provider value={{
-            auth, handleIniciarSesion, handleEstaLogueado, handleCerrarSesion, authId, authNombre, authToken
+            auth, handleIniciarSesion, handleEstaLogueado, handleCerrarSesion, authId, authNombre, authToken, handleMantenLaSesion
 
         }}>
             {children}

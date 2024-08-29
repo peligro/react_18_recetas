@@ -1,13 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getDatosHome } from './../servicios/HomeService';
 import { useLoaderData } from "react-router-dom";
-
+import AuthContext from './../context/AuthProvider';
 export async function loader() {
   let datos = await getDatosHome();
   return datos;
 }
 const Home = () => {
+  const { handleMantenLaSesion } = useContext(AuthContext);
   let datos = useLoaderData();
+  useEffect(() => {
+    
+    return () => {
+      handleMantenLaSesion();
+    };
+  }, []);
   return (
     <>
       <div className="breadcumb-area bg-img bg-overlay" style={{ backgroundImage: "url(img/bg-img/breadcumb3.jpg)" }}>
